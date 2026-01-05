@@ -46,5 +46,5 @@ RUN crontab /etc/cron.d/mrtg
 RUN touch /var/log/cron.log
 
 EXPOSE 681
-CMD ["bash", "-c", "cron && lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+CMD ["bash", "-c", "cron && lighttpd -D -f /etc/lighttpd/lighttpd.conf"]
 
