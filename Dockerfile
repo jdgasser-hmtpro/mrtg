@@ -38,7 +38,13 @@ RUN ls -l /etc/mrtg/
 RUN mkdir /var/www/mrtg/
 RUN echo "Europe/Paris" > /etc/timezone
 RUN echo "alias ssh='ssh -o StrictHostKeyChecking=accept-new'" >> /etc/bash.bashrc
+# Give execution rights on the cron job
+RUN chmod 0744 /etc/cron.d/mrtg
+# Apply cron job
+RUN crontab /etc/cron.d/mrtg
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
 
 EXPOSE 681
-CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+CMD ["bash", "-c", "cron && lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
 
