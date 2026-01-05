@@ -39,5 +39,5 @@ RUN echo "Europe/Paris" > /etc/timezone
 RUN echo "alias ssh='ssh -o StrictHostKeyChecking=accept-new'" >> /etc/bash.bashrc
 
 EXPOSE 681
-CMD ["bash", "-c", "/opt/mrtg/cfgmaker.sh &&", "bash", "-c", "/etc/mrtg/init.sh && lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+CMD ["bash", "-c", "/opt/mrtg/cfgmaker.sh && lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
 
