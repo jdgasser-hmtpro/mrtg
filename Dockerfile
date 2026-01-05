@@ -25,10 +25,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
  && mkdir -p /opt/mrtg
 
 COPY etc/* /etc/
-COPY scripts/*.sh /opt/mrtg/
+COPY scripts/* /opt/mrtg/
 COPY cron.d/* /etc/cron.d/
 
-CMD chmod /opt/mrtg/*.sh && bash /opt/mrtg/init.sh
+CMD chmod /opt/mrtg/* && bash /opt/mrtg/init.sh
 
 EXPOSE 681
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
