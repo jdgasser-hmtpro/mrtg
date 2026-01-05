@@ -32,8 +32,8 @@ COPY scripts/init.sh /opt/mrtg/
 COPY scripts/update.sh /opt/mrtg/
 COPY cron.d/mrtg /etc/cron.d/
 
-CMD chmod +x /opt/mrtg/* 
-CMD bash /opt/mrtg/init.sh
+RUN chmod +x /opt/mrtg/* 
+RUN bash /opt/mrtg/init.sh
 
 EXPOSE 681
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
