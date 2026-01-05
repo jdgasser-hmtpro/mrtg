@@ -1,5 +1,5 @@
 FROM ubuntu:24.04
-MAINTAINER Jean-Daniel Gasser <jdgasser@gmail.com>
+
 
 # installing packages for Lighttpd (to serve frontend) and System monitoring, including MRTG
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -32,7 +32,8 @@ COPY scripts/init.sh /opt/mrtg/
 COPY scripts/update.sh /opt/mrtg/
 COPY cron.d/mrtg /etc/cron.d/
 
-CMD chmod /opt/mrtg/* && bash /opt/mrtg/init.sh
+CMD chmod /opt/mrtg/* 
+CMD bash /opt/mrtg/init.sh
 
 EXPOSE 681
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
