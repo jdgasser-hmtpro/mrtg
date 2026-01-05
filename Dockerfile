@@ -29,6 +29,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 COPY etc/mrtg/mrtg.cfg /etc/mrtg/
 COPY scripts/cron1m.sh /etc/mrtg/
 COPY scripts/cron5m.sh /etc/mrtg/
+RUN sed -i 's/\r$//' /etc/mrtg/cron5m.sh
 COPY scripts/init.sh /etc/mrtg/
 COPY scripts/update.sh /etc/mrtg/
 COPY cron.d/mrtg /etc/cron.d/
@@ -44,6 +45,7 @@ RUN chmod 0744 /etc/cron.d/mrtg
 RUN crontab /etc/cron.d/mrtg
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
+VOLUME "/opt/mrtg" "/var/www/mrtg"
 
 EXPOSE 681
 CMD ["bash", "-c", "cron && lighttpd -D -f /etc/lighttpd/lighttpd.conf"]
