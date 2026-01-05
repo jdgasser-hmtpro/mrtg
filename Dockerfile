@@ -1,4 +1,5 @@
-FROM ubuntu
+FROM ubuntu:24.04
+MAINTAINER Jean-Daniel Gasser <jdgasser@gmail.com>
 
 # installing packages for Lighttpd (to serve frontend) and System monitoring, including MRTG
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
