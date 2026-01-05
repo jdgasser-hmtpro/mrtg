@@ -35,6 +35,7 @@ COPY cron.d/mrtg /etc/cron.d/
 
 RUN chmod +x /etc/mrtg/*.sh
 RUN ls -l /etc/mrtg/
+RUN mkdir /var/www/mrtg/
 RUN echo "Europe/Paris" > /etc/timezone
 RUN echo "alias ssh='ssh -o StrictHostKeyChecking=accept-new'" >> /etc/bash.bashrc
 
