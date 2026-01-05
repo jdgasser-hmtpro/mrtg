@@ -4,5 +4,5 @@
 #echo "#!/bin/bash" > /opt/mrtg/cron1m.sh 
 #echo "iostat -x $DISKS 4 12 >> /var/log/iostat.log" >> /opt/mrtg/cron1m.sh
 
-bash /etc/mrtg/update.sh
+/bin/bash /etc/mrtg/update.sh
 
