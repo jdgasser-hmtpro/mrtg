@@ -25,7 +25,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
  && lighty-enable-mod ssi \
  && mkdir -p /opt/mrtg
 
-COPY etc/mrtg/mrtg.cfg /etc/
+COPY etc/mrtg /etc/
 COPY scripts/cron1m.sh /opt/mrtg/
 COPY scripts/cron5m.sh /opt/mrtg/
 COPY scripts/init.sh /opt/mrtg/
@@ -33,8 +33,8 @@ COPY scripts/update.sh /opt/mrtg/
 COPY cron.d/mrtg /etc/cron.d/
 
 RUN chmod +x /opt/mrtg/* 
-RUN /opt/mrtg/init.sh
+RUN ls -l /opt/mrtg/
 
 EXPOSE 681
-CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+CMD ["bash" "-c" "/opt/mrtg/cfgmaker.sh && /opt/mrtg/init.sh && lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
 
