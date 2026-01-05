@@ -1,4 +1,1 @@
-* * * * *		/bin/bash /etc/mrtg/cron1m.sh 
 */5 * * * *		/bin/bash /etc/mrtg/cron5m.sh
-
-
