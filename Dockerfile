@@ -13,6 +13,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   snmp \
   snmpd \
   rrdtool \
+  net-tools \
   mrtg \
   snmp \
   snmp-mibs-downloader \
@@ -24,9 +25,12 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
  && lighty-enable-mod ssi \
  && mkdir -p /opt/mrtg
 
-COPY etc/* /etc/
-COPY scripts/* /opt/mrtg/
-COPY cron.d/* /etc/cron.d/
+COPY etc/mrtg/mrtg.cfg /etc/
+COPY scripts/cron1m.sh /opt/mrtg/
+COPY scripts/cron5m.sh /opt/mrtg/
+COPY scripts/init.sh /opt/mrtg/
+COPY scripts/update.sh /opt/mrtg/
+COPY cron.d/mrtg /etc/cron.d/
 
 CMD chmod /opt/mrtg/* && bash /opt/mrtg/init.sh
 
