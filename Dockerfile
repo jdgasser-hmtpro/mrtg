@@ -32,7 +32,7 @@ COPY scripts/init.sh /opt/mrtg/
 COPY scripts/update.sh /opt/mrtg/
 COPY cron.d/mrtg /etc/cron.d/
 
-CMD chmod /opt/mrtg/* 
+CMD chmod +x /opt/mrtg/* 
 CMD bash /opt/mrtg/init.sh
 
 EXPOSE 681
